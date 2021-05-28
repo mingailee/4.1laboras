@@ -5,16 +5,28 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.res.Resources;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.ArrayAdapter;
+import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.TextView;
+import android.widget.ListView;
 
 import java.io.IOException;
 import java.io.InputStream;
 import java.net.HttpURLConnection;
 import java.net.URL;
+import java.util.ArrayList;
+import java.util.List;
+
 
 public class MainActivity extends AppCompatActivity {
 
     TextView tvContent;
+
+    private ListView lvRates;
+    private ArrayAdapter ListAdapter;
+    private ArrayList<String> CurrencyRateList;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -26,10 +38,14 @@ public class MainActivity extends AppCompatActivity {
         this.tvContent.setText("Loading...");
         new DataLoader(){
             @Override
-            public void onPostExecute(String result)
+            public void onPostExecute(List<String> result)
             {
-                tvContent.setText(result);
+                tvContent.setText("result");
+                lvRates = findViewById(R.id.lvRates);
+                CurrencyRateList = new ArrayList<String>(result);
+                ListAdapter = new ArrayAdapter<>(getApplicationContext(), android.R.layout.simple_list_item_1, CurrencyRateList);
+                lvRates.setAdapter(ListAdapter);
             }
-        }.execute("USD");
+        }.execute();
     }
 }
