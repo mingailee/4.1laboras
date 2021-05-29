@@ -35,12 +35,12 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void onBtnDownloadClick(View view) {
-        this.tvContent.setText("Loading...");
+        this.tvContent.setText("Kraunama...");
         new DataLoader(){
             @Override
             public void onPostExecute(List<String> result)
             {
-                tvContent.setText("result");
+                tvContent.setText("Valiutų kursai");
                 lvRates = findViewById(R.id.lvRates);
                 CurrencyRateList = new ArrayList<String>(result);
                 ListAdapter = new ArrayAdapter<>(getApplicationContext(), android.R.layout.simple_list_item_1, CurrencyRateList);

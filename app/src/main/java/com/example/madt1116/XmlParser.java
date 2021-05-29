@@ -33,7 +33,7 @@ public class XmlParser {
                 if(cube.hasAttribute("currency")){
                     String currencyName = cube.getAttribute("currency");
                     String rate = cube.getAttribute("rate");
-                    result = currencyName + " - " + rate;
+                    result = currencyName + " rate is " + rate;
                     Ratelist.add(result);
                 }
             }
